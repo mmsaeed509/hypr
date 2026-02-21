@@ -1,0 +1,36 @@
+# ==========================================
+#      EXODIA CYBER HUD - CENTER MODE
+# ==========================================
+
+show=drun
+prompt=  󱓞  NEURAL INTERFACE
+
+width=750
+height=400
+
+location=center
+
+always_parse_args=true
+show_all=false
+print_command=true
+
+
+allow_images=true
+image_size=40
+
+term=alacritty
+insensitive=true
+matching=fuzzy
+
+gtk_dark=true
+; hide_scroll=true
+
+columns=2
+lines=10
+
+no_actions=true
+normal_window=false
+
+layer=overlay
+
+style=~/.config/hypr/wofi/style.css

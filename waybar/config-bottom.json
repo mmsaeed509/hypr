@@ -1,0 +1,108 @@
+{
+  "layer": "top",
+  "position": "bottom",
+  "height": 40,
+  "spacing": 4,
+  "margin-bottom": 5,
+  "margin-left": 30,
+  "margin-right": 30,
+  "modules-left": [
+    "hyprland/workspaces",
+    "idle_inhibitor"
+  ],
+  "modules-center": [
+    "custom/media"
+  ],
+  "modules-right": [
+    "bluetooth",
+    "backlight",
+    "custom/weather",
+    "disk",
+    "custom/uptime",
+    "custom/power"
+  ],
+  "hyprland/workspaces": {
+    "disable-scroll": true,
+    "all-outputs": true,
+    "format": "{name}: {icon}",
+    "format-icons": {
+      "1": "󰨞",
+      "2": "󰈹",
+      "3": "󰊴",
+      "4": "󰝰",
+      "5": "󰨞",
+      "urgent": "󰝰",
+      "focused": "󰝰",
+      "default": "󰝰"
+    }
+  },
+  "custom/media": {
+    "format": "{icon} {}",
+    "return-type": "json",
+    "max-length": 40,
+    "format-icons": {
+      "spotify": "󰓇",
+      "firefox": "󰈹",
+      "default": "󰎄"
+    },
+    "exec": "playerctl --follow metadata --format '{\"text\": \"{{artist}} - {{title}}\", \"tooltip\": \"{{title}}\", \"alt\": \"{{status}}\", \"class\": \"{{status}}\"}' -F",
+    "on-click": "playerctl play-pause",
+    "on-click-right": "playerctl stop",
+    "on-click-middle": "playerctl previous",
+    "on-scroll-up": "playerctl volume 0.05+",
+    "on-scroll-down": "playerctl volume 0.05-"
+  },
+  "custom/weather": {
+    "tooltip": true,
+    "format": "{}",
+    "interval": 1800,
+    "exec": "echo '🌡️ 22°C'"
+  },
+  "disk": {
+    "format": "󰋼 {percentage_used}%",
+    "path": "/",
+    "tooltip-format": "{used} / {total} ({percentage_used}%)"
+  },
+  "idle_inhibitor": {
+    "format": "{icon}",
+    "format-icons": {
+      "activated": "󰒳",
+      "deactivated": "󰒲"
+    },
+    "tooltip-format-activated": "Idle Inhibitor: Activated",
+    "tooltip-format-deactivated": "Idle Inhibitor: Deactivated"
+  },
+  "bluetooth": {
+    "format": "󰂯",
+    "format-disabled": "󰂲",
+    "format-off": "󰂲",
+    "format-on": "󰂯",
+    "format-connected": "󰂱 {num_connections}",
+    "tooltip-format": "{controller_alias}\t{controller_address}\n\n{num_connections} connected",
+    "tooltip-format-connected": "{controller_alias}\t{controller_address}\n\n{num_connections} connected\n\n{device_enumerate}",
+    "tooltip-format-enumerate-connected": "{device_alias}\t{device_address}"
+  },
+  "backlight": {
+    "format": "{icon} {percent}%",
+    "format-icons": [
+      "󰃞",
+      "󰃟",
+      "󰃠",
+      "󰃡",
+      "󰃢"
+    ],
+    "on-scroll-up": "brightnessctl set 5%+",
+    "on-scroll-down": "brightnessctl set 5%-"
+  },
+  "custom/uptime": {
+    "format": "󰅐 {}",
+    "interval": 60,
+    "exec": "uptime -p | sed 's/up //' | sed 's/ hours/h/' | sed 's/ hour/h/' | sed 's/ minutes/m/' | sed 's/ minute/m/' | sed 's/ days/d/' | sed 's/ day/d/'",
+    "tooltip": true
+  },
+  "custom/power": {
+    "format": "󰐥",
+    "on-click": "wlogout",
+    "tooltip": false
+  }
+}
